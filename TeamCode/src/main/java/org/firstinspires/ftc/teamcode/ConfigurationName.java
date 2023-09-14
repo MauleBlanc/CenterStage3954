@@ -9,4 +9,7 @@ public class ConfigurationName {
     public static String leftback = "blm";
     public static String rightfront = "frm";
     public static String rightback = "brm";
+
+    public static String motorarmpie = "motorarmpie";
+    public static String Rollers = "rollermotor";
 }

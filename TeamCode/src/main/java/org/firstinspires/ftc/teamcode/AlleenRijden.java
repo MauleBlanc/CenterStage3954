@@ -6,6 +6,8 @@ import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.robotcore.external.navigation.Acceleration;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
@@ -26,6 +28,9 @@ public class AlleenRijden extends LinearOpMode {
     private DcMotor rightback;
     private DcMotor leftfront;
     private DcMotor rightfront;
+
+    private DcMotor MotorArmpie;
+    private DcMotor Rollers;
 
     BNO055IMU imu;
     Orientation angles;
@@ -49,6 +54,14 @@ public class AlleenRijden extends LinearOpMode {
         rightback = hardwareMap.dcMotor.get(ConfigurationName.rightback);
         rightback.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rightback.setDirection(DcMotor.Direction.REVERSE);
+
+        MotorArmpie = hardwareMap.dcMotor.get(ConfigurationName.motorarmpie);
+        MotorArmpie.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        MotorArmpie.setDirection(DcMotorSimple.Direction.FORWARD);
+
+        Rollers = hardwareMap.dcMotor.get(ConfigurationName.Rollers);
+        Rollers.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        Rollers.setDirection(DcMotorSimple.Direction.FORWARD);
 
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
         parameters.angleUnit = BNO055IMU.AngleUnit.RADIANS;
@@ -93,11 +106,27 @@ public class AlleenRijden extends LinearOpMode {
             rightfront.setPower(frontRightPower);
             rightback.setPower(backRightPower);
 
+            if(gamepad1.dpad_up) {
+                MotorArmpie.setTargetPosition(Globalvalues.armpup);
+                MotorArmpie.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            }
+            if (gamepad1.left_bumper) {
+                Rollers.setPower(Globalvalues.rolling);
+            }
+
+            telemetry.addData("Armpie", MotorArmpie.getCurrentPosition());
+            telemetry.addData("Armpie", MotorArmpie.getTargetPosition());
+            telemetry.addData("Armpie", MotorArmpie.getPower());
+            telemetry.addData("Rollin", Rollers.getCurrentPosition());
+            telemetry.addData("Rollin", Rollers.getTargetPosition());
+            telemetry.addData("Rollin", Rollers.getPower());
+
             telemetry.addData("Motors", "leftfront (%.2f)", frontLeftPower);
             telemetry.addData("Motors", "leftback (%.2f)", backLeftPower);
             telemetry.addData("Motors", "rightfront (%.2f)", frontRightPower);
             telemetry.addData("Motors", "rightback (%.2f)", backRightPower);
             telemetry.addData("IMU", "Radians (%.2f)", head);
+            telemetry.update();
         }
     }
 }
