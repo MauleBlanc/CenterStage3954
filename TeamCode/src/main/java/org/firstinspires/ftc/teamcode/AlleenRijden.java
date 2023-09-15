@@ -58,6 +58,8 @@ public class AlleenRijden extends LinearOpMode {
         MotorArmpie = hardwareMap.dcMotor.get(ConfigurationName.motorarmpie);
         MotorArmpie.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         MotorArmpie.setDirection(DcMotorSimple.Direction.FORWARD);
+        MotorArmpie.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
 
         Rollers = hardwareMap.dcMotor.get(ConfigurationName.Rollers);
         Rollers.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -70,7 +72,6 @@ public class AlleenRijden extends LinearOpMode {
         parameters.loggingEnabled = true;
         parameters.loggingTag = "IMU";
         parameters.accelerationIntegrationAlgorithm = new JustLoggingAccelerationIntegrator();
-        parameters.useExternalCrystal = true;
 
 
         imu = hardwareMap.get(BNO055IMU.class, "imu");
@@ -106,12 +107,21 @@ public class AlleenRijden extends LinearOpMode {
             rightfront.setPower(frontRightPower);
             rightback.setPower(backRightPower);
 
-            if(gamepad1.dpad_up) {
+            if(gamepad1.y) {
                 MotorArmpie.setTargetPosition(Globalvalues.armpup);
                 MotorArmpie.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             }
-            if (gamepad1.left_bumper) {
-                Rollers.setPower(Globalvalues.rolling);
+            if(gamepad1.x) {
+                MotorArmpie.setTargetPosition(0);
+                MotorArmpie.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            }
+            if (MotorArmpie.isBusy()) {
+                MotorArmpie.setPower(0.5);
+            }
+            if (gamepad1.a) {
+                Rollers.setPower(0.5);
+            } else {
+                Rollers.setPower(0);
             }
 
             telemetry.addData("Armpie", MotorArmpie.getCurrentPosition());
