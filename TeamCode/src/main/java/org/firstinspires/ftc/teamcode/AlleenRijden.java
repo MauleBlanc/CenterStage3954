@@ -32,6 +32,8 @@ public class AlleenRijden extends LinearOpMode {
     private DcMotor MotorArmpie;
     private DcMotor Rollers;
 
+    private Servo pixeldrop;
+
     BNO055IMU imu;
     Orientation angles;
     Acceleration gravity;
@@ -62,6 +64,8 @@ public class AlleenRijden extends LinearOpMode {
         Rollers = hardwareMap.dcMotor.get(ConfigurationName.Rollers);
         Rollers.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         Rollers.setDirection(DcMotorSimple.Direction.FORWARD);
+
+        pixeldrop = hardwareMap.servo.get(ConfigurationName.pixeldrop);
 
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
         parameters.angleUnit = BNO055IMU.AngleUnit.RADIANS;
