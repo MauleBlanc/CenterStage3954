@@ -17,7 +17,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
 
 //@Disabled
-@TeleOp(name="Alleen Rijden", group="AAALinear Opmode")
+@TeleOp(name="AlleenRijden", group="AAALinear Opmode")
 public class AlleenRijden extends LinearOpMode {
 
     public static double maxspeed = 0.5;
@@ -29,7 +29,6 @@ public class AlleenRijden extends LinearOpMode {
     private DcMotor leftfront;
     private DcMotor rightfront;
 
-
     BNO055IMU imu;
     Orientation angles;
     Acceleration gravity;
@@ -39,7 +38,7 @@ public class AlleenRijden extends LinearOpMode {
 
         leftfront = hardwareMap.dcMotor.get(ConfigurationName.leftfront);
         leftfront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        leftfront.setDirection(DcMotor.Direction.REVERSE);
+        leftfront.setDirection(DcMotor.Direction.FORWARD);
 
         leftback = hardwareMap.dcMotor.get(ConfigurationName.leftback);
         leftback.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -47,12 +46,11 @@ public class AlleenRijden extends LinearOpMode {
 
         rightfront = hardwareMap.dcMotor.get(ConfigurationName.rightfront);
         rightfront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        rightfront.setDirection(DcMotor.Direction.FORWARD);
+        rightfront.setDirection(DcMotor.Direction.REVERSE);
 
         rightback = hardwareMap.dcMotor.get(ConfigurationName.rightback);
         rightback.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rightback.setDirection(DcMotor.Direction.REVERSE);
-
 
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
         parameters.angleUnit = BNO055IMU.AngleUnit.RADIANS;
@@ -79,6 +77,8 @@ public class AlleenRijden extends LinearOpMode {
             double rotX = x * Math.cos(-head) - y * Math.sin(-head);
             double rotY = x * Math.sin(-head) + y * Math.cos(-head);
 
+            rotX = rotX * 1.1;  // Counteract imperfect strafing
+
             // Denominator is the largest motor power (absolute value) or 1
             // This ensures all the powers maintain the same ratio,
             // but only if at least one is out of the range [-1, 1]
@@ -93,7 +93,6 @@ public class AlleenRijden extends LinearOpMode {
             leftback.setPower(backLeftPower);
             rightfront.setPower(frontRightPower);
             rightback.setPower(backRightPower);
-
 
             telemetry.addData("Motors", "leftfront (%.2f)", frontLeftPower);
             telemetry.addData("Motors", "leftback (%.2f)", backLeftPower);
