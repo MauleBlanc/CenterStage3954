@@ -76,6 +76,14 @@ public class LMuno extends LinearOpMode {
         waitForStart();
         while (opModeIsActive()) {
 
+            if(Math.abs(gamepad1.right_trigger) < 0.02) {
+                maxspeed = 0.5;
+
+            } else if (Math.abs(gamepad1.right_trigger) > 0.02) {
+                maxspeed = (-0.9*gamepad1.right_trigger) +0.5;
+
+            }
+
             if (Math.abs(gamepad1.left_trigger) > 0.02) {
                 pixeldrop.setPosition(servodown);
             } else if (Math.abs(gamepad1.right_trigger) > 0.02) {
