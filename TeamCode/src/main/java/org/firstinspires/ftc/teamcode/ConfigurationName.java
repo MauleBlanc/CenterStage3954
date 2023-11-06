@@ -13,5 +13,5 @@ public class ConfigurationName {
     public static String motorarmpie = "motorarmpie";
     public static String Rollers = "rollermotor";
 
-    public static String pixeldrop = "pixeldrop";
+    public static String pixeldrop = "pxd";
 }
