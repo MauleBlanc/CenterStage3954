@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -16,7 +17,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
 
-//@Disabled
+@Disabled
 @TeleOp(name="RObot in onw week", group="AAALinear Opmode")
 public class TeleOPRIONEW extends LinearOpMode {
 
@@ -109,6 +110,7 @@ public class TeleOPRIONEW extends LinearOpMode {
             leftback.setPower(backLeftPower);
             rightfront.setPower(frontRightPower);
             rightback.setPower(backRightPower);
+
 
             if(gamepad1.dpad_up) {
                 MotorArmpie.setTargetPosition(Globalvalues.armpup);

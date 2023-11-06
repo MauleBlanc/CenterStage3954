@@ -94,6 +94,14 @@ public class AlleenRijden extends LinearOpMode {
             rightfront.setPower(frontRightPower);
             rightback.setPower(backRightPower);
 
+            if(Math.abs(gamepad1.right_trigger) < 0.02) {
+                maxspeed = 0.5;
+
+            } else if (Math.abs(gamepad1.right_trigger) > 0.02) {
+                maxspeed = (-0.9*gamepad1.right_trigger) +0.5;
+
+            }
+
             telemetry.addData("Motors", "leftfront (%.2f)", frontLeftPower);
             telemetry.addData("Motors", "leftback (%.2f)", backLeftPower);
             telemetry.addData("Motors", "rightfront (%.2f)", frontRightPower);
