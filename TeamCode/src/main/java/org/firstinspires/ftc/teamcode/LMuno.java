@@ -24,8 +24,8 @@ public class LMuno extends LinearOpMode {
 
     public static double maxspeed = 0.5;
 
-    public static double servodown = 0.4;
-    public static double servoup = 0.83;
+    public static double servodown = 0.23;
+    public static double servoup = 0.5;
 
     private ElapsedTime runtime = new ElapsedTime();
 
@@ -84,9 +84,9 @@ public class LMuno extends LinearOpMode {
 
             }
 
-            if (Math.abs(gamepad1.left_trigger) > 0.02) {
+            if (gamepad1.left_bumper) {
                 pixeldrop.setPosition(servodown);
-            } else if (Math.abs(gamepad1.right_trigger) > 0.02) {
+            } else if (gamepad1.right_bumper) {
                 pixeldrop.setPosition(servoup   );
             }
 
