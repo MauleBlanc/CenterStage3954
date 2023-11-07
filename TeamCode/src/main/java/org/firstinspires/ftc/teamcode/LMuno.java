@@ -80,7 +80,7 @@ public class LMuno extends LinearOpMode {
                 maxspeed = 0.5;
 
             } else if (Math.abs(gamepad1.right_trigger) > 0.02) {
-                maxspeed = (-0.9*gamepad1.right_trigger) +0.5;
+                maxspeed = (-0.4*gamepad1.right_trigger) +0.5;
 
             }
 
