@@ -22,7 +22,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 @TeleOp(name="LM1", group="AAALinear Opmode")
 public class LMuno extends LinearOpMode {
 
-    public static double maxspeed = 0.5;
+    public static double maxspeed;
 
     public static double servodown = 0.23;
     public static double servoup = 0.5;
