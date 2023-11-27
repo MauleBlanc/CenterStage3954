@@ -26,6 +26,7 @@ public class LMuno extends LinearOpMode {
 
     public static double servodown = 0.23;
     public static double servoup = 0.5;
+    public static double hanging = 1;
 
     private ElapsedTime runtime = new ElapsedTime();
 
@@ -34,6 +35,8 @@ public class LMuno extends LinearOpMode {
     private DcMotor leftfront;
     private DcMotor rightfront;
     private Servo pixeldrop;
+    private Servo hanger;
+    private Servo hanger2;
 
     BNO055IMU imu;
     Orientation angles;
@@ -59,6 +62,10 @@ public class LMuno extends LinearOpMode {
         rightback.setDirection(DcMotor.Direction.REVERSE);
 
         pixeldrop = hardwareMap.servo.get(ConfigurationName.pixeldrop);
+        hanger = hardwareMap.servo.get(ConfigurationName.hanger);
+        hanger2 = hardwareMap.servo.get(ConfigurationName.hanger2);
+
+
 
 
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
@@ -88,6 +95,11 @@ public class LMuno extends LinearOpMode {
                 pixeldrop.setPosition(servodown);
             } else if (gamepad1.right_bumper) {
                 pixeldrop.setPosition(servoup   );
+            }
+
+            if (gamepad2.dpad_up) {
+                hanger.setPosition(hanging);
+                hanger2.setPosition(hanging);
             }
 
             double y = -gamepad1.left_stick_y; // Remember, this is reversed!
@@ -124,6 +136,8 @@ public class LMuno extends LinearOpMode {
             telemetry.addData("Motors", "rightback (%.2f)", backRightPower);
             telemetry.addData("IMU", "Radians (%.2f)", head);
             telemetry.addData("Servo", pixeldrop.getPosition());
+            telemetry.addData("Servo", hanger.getPosition());
+            telemetry.addData("Servo", hanger2.getPosition());
             telemetry.update();
         }
     }

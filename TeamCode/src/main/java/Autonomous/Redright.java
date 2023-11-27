@@ -15,5 +15,5 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 @Autonomous
 public class Redright extends LinearOpMode {
 
-    OpenCvCamera camera;
+
 }

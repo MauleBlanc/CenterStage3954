@@ -14,4 +14,6 @@ public class ConfigurationName {
     public static String Rollers = "rollermotor";
 
     public static String pixeldrop = "pxd";
+    public static String hanger = "hang";
+    public static String hanger2 = "hang2";
 }
