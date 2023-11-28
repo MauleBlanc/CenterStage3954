@@ -1,4 +1,4 @@
-package Autonomous;
+//package Autonomous;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -11,9 +11,9 @@ import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
 
 
-@Config
-@Autonomous
-public class Redright extends LinearOpMode {
+//@Config
+//@Autonomous
+//public class Redright extends LinearOpMode {
 
 
-}
+//}

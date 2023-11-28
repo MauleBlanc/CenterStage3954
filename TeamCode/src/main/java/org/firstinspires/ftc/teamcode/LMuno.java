@@ -26,7 +26,8 @@ public class LMuno extends LinearOpMode {
 
     public static double servodown = 0.23;
     public static double servoup = 0.5;
-    public static double hanging = 1;
+    public static double hanging = 0.495;
+    public static double hanging2 = 0.57;
 
     private ElapsedTime runtime = new ElapsedTime();
 
@@ -99,7 +100,7 @@ public class LMuno extends LinearOpMode {
 
             if (gamepad2.dpad_up) {
                 hanger.setPosition(hanging);
-                hanger2.setPosition(hanging);
+                hanger2.setPosition(hanging2);
             }
 
             double y = -gamepad1.left_stick_y; // Remember, this is reversed!
