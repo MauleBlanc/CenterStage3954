@@ -92,13 +92,13 @@ public class LMuno extends LinearOpMode {
 
             }
 
-            if (gamepad1.left_bumper) {
+            if (gamepad1.dpad_down) {
                 pixeldrop.setPosition(servodown);
             } else if (gamepad1.right_bumper) {
                 pixeldrop.setPosition(servoup   );
             }
 
-            if (gamepad2.dpad_up) {
+            if (gamepad1.dpad_up) {
                 hanger.setPosition(hanging);
                 hanger2.setPosition(hanging2);
             }
