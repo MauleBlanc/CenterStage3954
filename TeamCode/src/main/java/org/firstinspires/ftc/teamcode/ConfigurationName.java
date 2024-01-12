@@ -21,4 +21,5 @@ public class ConfigurationName {
     public static String hanger2 = "hang2";
     public static String grab = "grab";
     public static String luik = "luik";
+    public static String drone = "drone";
 }

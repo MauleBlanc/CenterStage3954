@@ -34,6 +34,7 @@ public class LMuno extends LinearOpMode {
     public static double release = 1;
     public static double jail = 0.925;
     public static double freedom = 0.81;
+    public static double flight = 0.5;
 
     private ElapsedTime runtime = new ElapsedTime();
 
@@ -46,6 +47,7 @@ public class LMuno extends LinearOpMode {
     private Servo hanger;
     private Servo hanger2;
     private Servo luik;
+    private Servo drone;
 
     BNO055IMU imu;
     Orientation angles;
@@ -78,6 +80,7 @@ public class LMuno extends LinearOpMode {
         hanger2 = hardwareMap.servo.get(ConfigurationName.hanger2);
 //        grab = hardwareMap.servo.get(ConfigurationName.grab);
         luik = hardwareMap.servo.get(ConfigurationName.luik);
+        drone = hardwareMap.servo.get(ConfigurationName.drone);
 
 
 
@@ -114,6 +117,10 @@ public class LMuno extends LinearOpMode {
             if (gamepad1.dpad_up) {
                 hanger.setPosition(hanging);
                 hanger2.setPosition(hanging2);
+            }
+
+            if (gamepad1.y) {
+                drone.setPosition(flight);
             }
 
 //            if (gamepad2.dpad_down) {
@@ -168,6 +175,7 @@ public class LMuno extends LinearOpMode {
             telemetry.addData("Servo", hanger2.getPosition());
 //            telemetry.addData("Servo", grab.getPosition());
             telemetry.addData("Servo", luik.getPosition());
+            telemetry.addData("Servo", drone.getPosition());
             telemetry.update();
         }
     }
