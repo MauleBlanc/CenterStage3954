@@ -32,8 +32,8 @@ public class LMuno extends LinearOpMode {
     public static double hanging2 = 0.57;
     public static double secured = 0;
     public static double release = 1;
-    public static double jail = 1;
-    public static double freedom = 0;
+    public static double jail = 0.925;
+    public static double freedom = 0.81;
 
     private ElapsedTime runtime = new ElapsedTime();
 
