@@ -32,6 +32,8 @@ public class LMuno extends LinearOpMode {
     public static double hanging2 = 0.57;
     public static double secured = 0;
     public static double release = 1;
+    public static double jail = 1;
+    public static double freedom = 0;
 
     private ElapsedTime runtime = new ElapsedTime();
 
@@ -39,10 +41,11 @@ public class LMuno extends LinearOpMode {
     private DcMotor rightback;
     private DcMotor leftfront;
     private DcMotor rightfront;
-    private Servo grab;
+//    private Servo grab;
     private Servo pixeldrop;
     private Servo hanger;
     private Servo hanger2;
+    private Servo luik;
 
     BNO055IMU imu;
     Orientation angles;
@@ -73,7 +76,8 @@ public class LMuno extends LinearOpMode {
         pixeldrop = hardwareMap.servo.get(ConfigurationName.pixeldrop);
         hanger = hardwareMap.servo.get(ConfigurationName.hanger);
         hanger2 = hardwareMap.servo.get(ConfigurationName.hanger2);
-        grab = hardwareMap.servo.get(ConfigurationName.grab);
+//        grab = hardwareMap.servo.get(ConfigurationName.grab);
+        luik = hardwareMap.servo.get(ConfigurationName.luik);
 
 
 
@@ -112,11 +116,16 @@ public class LMuno extends LinearOpMode {
                 hanger2.setPosition(hanging2);
             }
 
-            if (gamepad2.dpad_down) {
-                grab.setPosition(secured);
-            } else if (gamepad2.dpad_up) {
-                grab.setPosition(release);
-            }
+//            if (gamepad2.dpad_down) {
+//                grab.setPosition(secured);
+//            } else if (gamepad2.dpad_up) {
+//                grab.setPosition(release);
+//            }
+
+            if (gamepad1.a) {
+                luik.setPosition(jail);
+            } else if (gamepad1.b)
+                luik.setPosition(freedom);
 
             double y = -gamepad1.left_stick_y; // Remember, this is reversed!
             double x = gamepad1.left_stick_x * 1.1; // Counteract imperfect strafing
@@ -157,7 +166,8 @@ public class LMuno extends LinearOpMode {
             telemetry.addData("Servo", pixeldrop.getPosition());
             telemetry.addData("Servo", hanger.getPosition());
             telemetry.addData("Servo", hanger2.getPosition());
-            telemetry.addData("Servo", grab.getPosition());
+//            telemetry.addData("Servo", grab.getPosition());
+            telemetry.addData("Servo", luik.getPosition());
             telemetry.update();
         }
     }
